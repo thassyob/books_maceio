@@ -1,16 +1,19 @@
 class Api::V1::BooksController < ApplicationController
+ 
   def index
-      books = Book.all
-  
-      books = Book.where(title: params[:title]) if params[:title].present?
-      books = Book.where(author: params[:author]) if params[:author].present?
-  
-      render json: paginate(books),
-             each_serializer: Api::V1::Books::Index::BookSerializer,
-             status: :ok
+    books = Book.all
+
+    books = Book.where(title: params[:title]) if params[:title].present?
+    books = Book.where(author: params[:author]) if params[:author].present?
+
+    render json: paginate(books),
+           each_serializer: Api::V1::Books::Index::BookSerializer,
+           status: :ok
   end
 
   def create
+    authorize :book
+  
     book = Book.create!(create_params)
 
     render json: book,
@@ -21,12 +24,16 @@ class Api::V1::BooksController < ApplicationController
   def update
     book = Book.find(params[:id])
 
+    authorize book
+
     book.update!(update_params)
     head :no_content
   end
 
   def destroy
     book = Book.find(params[:id])
+
+    authorize book
 
     book.destroy
     head :no_content

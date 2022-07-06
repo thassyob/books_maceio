@@ -8,5 +8,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :validatable
   include DeviseTokenAuth::Concerns::User
 
+  enum user_type: { reader: 0, librarian: 1 }
+
   validates :name, :email, presence: true
 end
