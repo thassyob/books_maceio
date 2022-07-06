@@ -5,6 +5,9 @@ Rails.application.routes.draw do
           registrations: 'api/v1/auth/registrations',
           sessions: 'api/v1/auth/sessions'
       }
+
+
+      resources :users, only: :update
     end
   end
 end 
