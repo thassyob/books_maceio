@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
 
       resources :users, only: :update
-      resources :books, only: :create
+      resources :books, only: %i[create update] 
     end
   end
 end 
