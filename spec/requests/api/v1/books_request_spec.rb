@@ -49,7 +49,7 @@ RSpec.describe "Api::V1::Books", type: :request do
   describe 'POST #create' do
     context 'when creating a book' do
       it 'return 201 status code and attributes' do
-        user = create(:user)
+        user = create(:user, user_type: 'librarian')
         book_params = attributes_for(:book)
 
         post '/api/v1/books', params: { book: book_params }, headers: get_headers(user)
@@ -67,7 +67,7 @@ RSpec.describe "Api::V1::Books", type: :request do
   describe 'PUT #update' do
     context 'when pass valid data' do
       it 'return 204 status code' do
-        user = create(:user)
+        user = create(:user, user_type: 'librarian')
         book = create(:book)
         book_params = { title: 'Teste', author: 'teste' }
 
@@ -81,7 +81,7 @@ RSpec.describe "Api::V1::Books", type: :request do
   describe "DELETE #destroy" do
     context "when book is deleted" do
       it "return http status 204" do
-        user = create(:user)
+        user = create(:user, user_type: 'librarian')
         book = create(:book)
        
         delete "/api/v1/books/#{book.id}", headers: get_headers(user)

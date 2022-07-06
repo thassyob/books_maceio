@@ -20,6 +20,7 @@ RSpec.describe 'Api::V1::Auth::Registrations', type: :request do
         expect(json_body[:user]).to have_key(:id)
         expect(json_body[:user]).to have_key(:name)
         expect(json_body[:user]).to have_key(:email)
+        expect(json_body[:user]).to have_key(:user_type)
       end
     end
   end

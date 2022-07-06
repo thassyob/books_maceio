@@ -25,6 +25,7 @@ gem 'pry', '~> 0.13.1'
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'devise_token_auth'
 gem 'kaminari', '~> 0.17.0'
+gem 'pundit', '~> 1.1'
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
