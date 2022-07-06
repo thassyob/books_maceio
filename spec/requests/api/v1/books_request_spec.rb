@@ -32,4 +32,17 @@ RSpec.describe "Api::V1::Books", type: :request do
       end
     end
   end
+
+  describe "DELETE #destroy" do
+    context "when book is deleted" do
+      it "return http status 204" do
+        user = create(:user)
+        book = create(:book)
+       
+        delete "/api/v1/books/#{book.id}", headers: get_headers(user)
+
+        expect(response).to have_http_status(:no_content)
+      end
+    end
+  end
 end 

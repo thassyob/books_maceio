@@ -14,6 +14,13 @@ class Api::V1::BooksController < ApplicationController
     head :no_content
   end
 
+  def destroy
+    book = Book.find(params[:id])
+
+    book.destroy
+    head :no_content
+  end
+
   private
 
   def create_params
