@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class FavoriteBooksPolicy < ApplicationPolicy
   def index?
     user.present? && user.user_type == 'reader'

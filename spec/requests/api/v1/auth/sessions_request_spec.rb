@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'Api::V1::Auth::Sessions', type: :request do
@@ -46,4 +48,4 @@ RSpec.describe 'Api::V1::Auth::Sessions', type: :request do
       expect(response).to have_http_status(:no_content)
     end
   end
-end  
+end

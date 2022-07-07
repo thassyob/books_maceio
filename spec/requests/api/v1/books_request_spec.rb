@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe "Api::V1::Books", type: :request do
+RSpec.describe 'Api::V1::Books', type: :request do
   describe 'INDEX #books' do
     context 'when list books' do
       it 'must return 200 http status code and list attributes' do
@@ -24,28 +26,28 @@ RSpec.describe "Api::V1::Books", type: :request do
     context 'when filtered list books' do
       it 'by title' do
         user = create(:user)
-        book1 = create(:book, title: 'teste1')
-        book2 = create(:book, title: 'teste2')
+        create(:book, title: 'teste1')
+        create(:book, title: 'teste2')
         query_params = 'teste1'
 
         get "/api/v1/books?title=#{query_params}", headers: get_headers(user)
-        
+
         expect(json_body.count).to eq(1)
       end
 
       it 'by author' do
         user = create(:user)
-        book1 = create(:book, author: 'teste1')
-        book2 = create(:book, author: 'teste2')
+        create(:book, author: 'teste1')
+        create(:book, author: 'teste2')
         query_params = 'teste1'
 
         get "/api/v1/books?author=#{query_params}", headers: get_headers(user)
-        
+
         expect(json_body.count).to eq(1)
       end
     end
   end
-  
+
   describe 'POST #create' do
     context 'when creating a book' do
       it 'return 201 status code and attributes' do
@@ -78,16 +80,16 @@ RSpec.describe "Api::V1::Books", type: :request do
     end
   end
 
-  describe "DELETE #destroy" do
-    context "when book is deleted" do
-      it "return http status 204" do
+  describe 'DELETE #destroy' do
+    context 'when book is deleted' do
+      it 'return http status 204' do
         user = create(:user, user_type: 'librarian')
         book = create(:book)
-       
+
         delete "/api/v1/books/#{book.id}", headers: get_headers(user)
 
         expect(response).to have_http_status(:no_content)
       end
     end
   end
-end 
+end

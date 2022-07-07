@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe FavoriteBooksPolicy do
@@ -14,7 +16,7 @@ RSpec.describe FavoriteBooksPolicy do
   end
 
   permissions :index?, :create?, :destroy? do
-    context "when user is not reader" do
+    context 'when user is not reader' do
       it 'should not permit' do
         user = create(:user, user_type: 'librarian')
 
