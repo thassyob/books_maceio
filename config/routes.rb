@@ -8,7 +8,8 @@ Rails.application.routes.draw do
 
 
       resources :users, only: :update
-      resources :books, only: %i[create update destroy index] 
+      resources :books, only: %i[create update destroy index]
+      resources :favorite_books, only: %i[index create destroy]
     end
   end
 end 
