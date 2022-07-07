@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class BookPolicy < ApplicationPolicy
   def create?
     user.present? && user.user_type == 'librarian'

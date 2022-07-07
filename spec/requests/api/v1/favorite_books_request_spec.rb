@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe "Api::V1::FavoriteBooks", type: :request do
+RSpec.describe 'Api::V1::FavoriteBooks', type: :request do
   describe 'GET #index' do
     it 'must return 200 http status code and list attributes' do
       book = create(:book)
@@ -22,8 +24,8 @@ RSpec.describe "Api::V1::FavoriteBooks", type: :request do
     it 'must return 201 http status' do
       user = create(:user)
       book = create(:book)
-      
-      post '/api/v1/favorite_books', params: { favorite_data: { book_id: book.id }  }, headers: get_headers(user)
+
+      post '/api/v1/favorite_books', params: { favorite_data: { book_id: book.id } }, headers: get_headers(user)
 
       expect(response).to have_http_status(:created)
     end

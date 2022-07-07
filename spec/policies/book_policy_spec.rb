@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe BookPolicy do
@@ -14,7 +16,7 @@ RSpec.describe BookPolicy do
   end
 
   permissions :create?, :update?, :destroy? do
-    context "when user is not librarian" do
+    context 'when user is not librarian' do
       it 'should not permit' do
         user = create(:user, user_type: 'reader')
 

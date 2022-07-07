@@ -1,40 +1,46 @@
-class Api::V1::FavoriteBooksController < ApplicationController
-  def index
-    authorize :favorite_books
+# frozen_string_literal: true
 
-    favorite_books = Book.where(id: current_api_v1_user.favorite_books)
+module Api
+  module V1
+    class FavoriteBooksController < ApplicationController
+      def index
+        authorize :favorite_books
 
-    render json: favorite_books,
-           each_serializer: Api::V1::FavoriteBooks::Index::FavoriteBooksSerializer,
-           status: :ok
-  end
+        favorite_books = Book.where(id: current_api_v1_user.favorite_books)
 
-  def create
-    authorize :favorite_books
+        render json: favorite_books,
+               each_serializer: Api::V1::FavoriteBooks::Index::FavoriteBooksSerializer,
+               status: :ok
+      end
 
-    book = Book.find(favorite_params[:book_id])
+      def create
+        authorize :favorite_books
 
-    current_api_v1_user.favorite_books << book.id
-    current_api_v1_user.save
+        book = Book.find(favorite_params[:book_id])
 
-    render json: current_api_v1_user.favorite_books,
-           status: :created
-  end
+        current_api_v1_user.favorite_books << book.id
+        current_api_v1_user.save
 
-  def destroy
-    authorize :favorite_books
+        render json: current_api_v1_user.favorite_books,
+               status: :created
+      end
 
-    book = Book.find(params[:id])
+      def destroy
+        authorize :favorite_books
 
-    current_api_v1_user.favorite_books.delete(book.id.to_s)
-    current_api_v1_user.save
+        book = Book.find(params[:id])
 
-    head :no_content
-  end
+        current_api_v1_user.favorite_books.delete(book.id.to_s)
+        current_api_v1_user.save
 
-  private
-  
-  def favorite_params
-    params.require(:favorite_data).permit(:book_id)
+        head :no_content
+      end
+
+      private
+
+      def favorite_params
+        params.require(:favorite_data).permit(:book_id)
+      end
+    end
   end
 end

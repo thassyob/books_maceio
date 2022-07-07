@@ -1,3 +1,13 @@
-class Api::V1::Books::Index::BookSerializer < ActiveModel::Serializer
-  attributes :id, :title, :description, :author, :image
-end 
+# frozen_string_literal: true
+
+module Api
+  module V1
+    module Books
+      module Index
+        class BookSerializer < ActiveModel::Serializer
+          attributes :id, :title, :description, :author, :image
+        end
+      end
+    end
+  end
+end

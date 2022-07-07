@@ -1,3 +1,13 @@
-class Api::V1::Auth::Sessions::UserSerializer < ActiveModel::Serializer
-  attributes :id, :name, :email
-end 
+# frozen_string_literal: true
+
+module Api
+  module V1
+    module Auth
+      module Sessions
+        class UserSerializer < ActiveModel::Serializer
+          attributes :id, :name, :email
+        end
+      end
+    end
+  end
+end
